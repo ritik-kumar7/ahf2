@@ -1,0 +1,127 @@
+/* Section Tracker Container */
+.section-tracker {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80vh;
+    padding: 0;
+}
+
+/* Vertical Line connecting dots */
+.section-tracker::before {
+    content: '';
+    position: absolute;
+    left: 9px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(201, 168, 85, 0.2) 10%,
+            rgba(201, 168, 85, 0.2) 90%,
+            transparent 100%);
+    z-index: -1;
+}
+
+/* The Moving Indicator Bead */
+.tracker-indicator {
+    position: absolute;
+    left: 5px;
+    /* Aligned with line center */
+    width: 10px;
+    height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--gold), 0 0 30px var(--gold-dark);
+    z-index: 2;
+    pointer-events: none;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    will-change: top, box-shadow;
+}
+
+/* Glow Effect Increase (Pulse) when at a station */
+.tracker-indicator.active-glow {
+    box-shadow: 0 0 25px var(--gold), 0 0 50px var(--gold-specular), 0 0 80px var(--gold-bronze);
+    transform: scale(1.4);
+    background: var(--gold-specular);
+}
+
+/* Tracker Item */
+.tracker-item {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 20px;
+    /* click target */
+}
+
+/* The Dot - Hidden but keeps spacing/layout */
+.tracker-dot {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tracker-dot::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background-color: var(--text-muted);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+/* Tooltip Labels */
+.tracker-label {
+    position: absolute;
+    left: 35px;
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid var(--border-gold);
+    color: var(--gold);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.tracker-item:hover .tracker-label {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* Specific Vertical Adjustments for visual alignment */
+/* Child 1 is indicator, 2 is Home, 3 is Strategy, 4 is Performance, 5 is Risk */
+.section-tracker>.tracker-item:nth-child(4) {
+    transform: translateY(-50px);
+}
+
+.section-tracker>.tracker-item:nth-child(5) {
+    transform: translateY(-50px);
+}
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+    .section-tracker {
+        display: none;
+    }
+}

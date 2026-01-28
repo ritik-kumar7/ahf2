@@ -1,0 +1,383 @@
+/* ============================================
+   🏆 FOOTER - LUXURY BLACK & GOLD THEME
+   ============================================ */
+
+.footer-section {
+    --gold-primary: var(--gold);
+    --gold-light: var(--gold-light);
+    --gold-champagne: var(--champagne);
+    --bg-primary: var(--bg-dark);
+    --text-primary: var(--text-primary);
+    --text-secondary: var(--text-secondary);
+    --text-muted: var(--text-muted);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    padding: 120px 0 40px;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    margin-top: 80px;
+    /* Add some spacing from previous section */
+}
+
+/* Animated top border */
+.footer-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-primary), var(--gold-light), var(--gold-champagne), transparent);
+    animation: borderShimmer 5s linear infinite;
+}
+
+@keyframes borderShimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.footer-top-shape {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to bottom, var(--bg-primary), transparent);
+    pointer-events: none;
+}
+
+.footer-section .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Footer Navigation */
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px 50px;
+    margin-bottom: 70px;
+}
+
+.footer-nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 12px 0;
+    position: relative;
+    transition: all 0.4s var(--ease-smooth);
+    cursor: pointer;
+}
+
+.footer-nav a::before {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold-primary), var(--gold-light));
+    transition: width 0.4s var(--ease-smooth);
+    box-shadow: 0 0 10px var(--gold-primary);
+}
+
+.footer-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: var(--gold-primary);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.footer-nav a:hover::before {
+    width: 100%;
+}
+
+.footer-nav a:hover::after {
+    opacity: 1;
+}
+
+.footer-nav a:hover {
+    color: var(--gold-primary);
+    text-shadow: 0 0 15px var(--gold-primary);
+}
+
+/* Footer Main Grid */
+.footer-main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    padding: 60px 0;
+    border-top: 1px solid rgba(201, 168, 85, 0.1);
+    border-bottom: 1px solid rgba(201, 168, 85, 0.1);
+    position: relative;
+}
+
+/* Corner decorations */
+.footer-main::before,
+.footer-main::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--gold-primary);
+}
+
+.footer-main::before {
+    top: -8px;
+    left: -8px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.footer-main::after {
+    bottom: -8px;
+    right: -8px;
+    border-left: none;
+    border-top: none;
+}
+
+.footer-col {
+    text-align: center;
+}
+
+.footer-col h3 {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gold-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    /* background: linear-gradient(90deg, var(--gold-primary), var(--text-primary)); */
+    /* -webkit-background-clip: text; */
+    /* -webkit-text-fill-color: transparent; */
+    /* background-clip: text; */
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+.social-links a {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(201, 168, 85, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(201, 168, 85, 0.15);
+    border-radius: 16px;
+    color: var(--text-primary);
+    transition: all 0.4s var(--ease-bounce);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-links a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: -1;
+}
+
+.social-links a:hover::before {
+    opacity: 1;
+}
+
+.social-links a svg {
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s;
+}
+
+.social-links a:hover {
+    border-color: transparent;
+    color: #000;
+    /* Contrast text on gold hover */
+    transform: translateY(-5px) rotate(5deg);
+    box-shadow:
+        0 15px 30px rgba(201, 168, 85, 0.3),
+        0 0 30px rgba(201, 168, 85, 0.2);
+}
+
+/* WhatsApp link */
+.whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.4s;
+}
+
+.whatsapp-link svg {
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 0 10px rgba(37, 211, 102, 0.5));
+}
+
+.whatsapp-link:hover {
+    color: #25D366;
+    text-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+    transform: scale(1.05);
+}
+
+/* Purchase button */
+.purchase-btn {
+    display: inline-flex;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.purchase-btn .btn-content {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 38px;
+    background: rgba(201, 168, 85, 0.05);
+    border: 2px solid var(--gold-primary);
+    border-radius: 60px;
+    transition: all 0.5s var(--ease-bounce);
+    position: relative;
+    overflow: hidden;
+}
+
+.purchase-btn .btn-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
+    transition: left 0.5s;
+    z-index: -1;
+}
+
+.purchase-btn:hover .btn-content::before {
+    left: 0;
+}
+
+.purchase-btn:hover .btn-content {
+    border-color: transparent;
+    transform: translateY(-3px);
+    box-shadow:
+        0 15px 40px rgba(201, 168, 85, 0.3),
+        0 0 40px rgba(212, 175, 55, 0.2);
+}
+
+.purchase-btn .arrow-left,
+.purchase-btn .arrow-right {
+    width: 24px;
+    height: 24px;
+    color: var(--gold-primary);
+    transition: all 0.4s;
+}
+
+.purchase-btn:hover .arrow-left,
+.purchase-btn:hover .arrow-right {
+    color: #000;
+}
+
+.purchase-btn .btn-text {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--gold-primary);
+    letter-spacing: 1.5px;
+    transition: color 0.4s;
+    white-space: nowrap;
+}
+
+.purchase-btn:hover .btn-text {
+    color: #000;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    padding-top: 40px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-section {
+        padding: 80px 0 30px;
+    }
+
+    .footer-nav {
+        gap: 10px 30px;
+        margin-bottom: 50px;
+    }
+
+    .footer-nav a {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+
+    .footer-col h3 {
+        font-size: 1rem;
+    }
+
+    .social-links a {
+        width: 50px;
+        height: 50px;
+    }
+
+    .whatsapp-link {
+        font-size: 1.1rem;
+    }
+
+    .purchase-btn .btn-content {
+        padding: 16px 30px;
+    }
+}
