@@ -3,7 +3,15 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import './index.css';
 import Home from './components/Home';
 import Login from './components/Login';
-import Insights from './components/Insights/Insights';
+import About from './components/About/About';
+import Tokenomics from './components/Tokenomics/Tokenomics';
+import Roadmap from './components/Roadmap/Roadmap';
+import Whitepaper from './components/Whitepaper/Whitepaper';
+import Partners from './components/Partners/Partners';
+import Contact from './components/Contact/Contact';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import BackgroundParticles from './components/BackgroundParticles';
 import AIChatBot from './components/AIChatBot/AIChatBot';
 
 const ScrollToTop = () => {
@@ -85,12 +93,20 @@ function Main() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <BackgroundParticles />
+      <Navbar />
       <AIChatBot />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/insights" element={<Insights />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/tokenomics" element={<Tokenomics />} />
+        <Route path="/whitepaper" element={<Whitepaper />} />
+        <Route path="/roadmap" element={<Roadmap />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
+      <Partners />
+      <Footer />
     </BrowserRouter>
   );
 }

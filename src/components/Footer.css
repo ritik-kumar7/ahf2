@@ -163,15 +163,19 @@
 .footer-col h3 {
     font-family: var(--font-serif);
     font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--gold-primary);
+    font-weight: 300;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: -0.015em;
     margin-bottom: 30px;
-    /* background: linear-gradient(90deg, var(--gold-primary), var(--text-primary)); */
-    /* -webkit-background-clip: text; */
-    /* -webkit-text-fill-color: transparent; */
-    /* background-clip: text; */
+    background: linear-gradient(180deg,
+            #f5e6b8 0%,
+            #e0c87a 25%,
+            #c9a855 50%,
+            #b08d3a 75%,
+            #967428 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* Social Links */

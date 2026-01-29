@@ -1,0 +1,287 @@
+/* ============================================
+   🏆 FAQ - LUXURY BLACK & GOLD THEME
+   ============================================ */
+
+.faq-section {
+    padding: 120px 0;
+    background: transparent;
+    position: relative;
+}
+
+.faq-section .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.faq-section .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.faq-section .heading-text {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 300;
+    letter-spacing: -0.015em;
+    background: linear-gradient(180deg,
+            #f5e6b8 0%,
+            #e0c87a 25%,
+            #c9a855 50%,
+            #b08d3a 75%,
+            #967428 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    display: inline-block;
+}
+
+.faq-section .heading-text::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), transparent);
+    border-radius: 2px;
+    box-shadow: 0 0 15px var(--gold);
+}
+
+/* Tab buttons */
+.tabs-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.tab-btn {
+    padding: 16px 32px;
+    background: rgba(201, 168, 85, 0.05);
+    /* Keep inactive subtle or match btn-outline? Leaving as is for contrast with active */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(201, 168, 85, 0.15);
+    border-radius: 40px;
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: -1;
+}
+
+.tab-btn:hover {
+    border-color: rgba(201, 168, 85, 0.4);
+    color: var(--text-primary);
+    box-shadow: 0 0 25px rgba(201, 168, 85, 0.2);
+}
+
+.tab-btn.active::before {
+    opacity: 1;
+}
+
+.tab-btn.active {
+    border-color: transparent;
+    color: var(--bg-dark);
+    font-weight: 700;
+    background: linear-gradient(180deg,
+            #d4b86f 0%,
+            #b89a52 45%,
+            #9d8645 100%);
+    box-shadow:
+        0 1px 3px rgba(201, 168, 85, 0.15),
+        0 0 1px rgba(242, 232, 204, 0.3),
+        0 5px 25px rgba(201, 168, 85, 0.4),
+        0 0 50px rgba(220, 199, 137, 0.2);
+}
+
+/* Accordion */
+.accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.accordion-item {
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(201, 168, 85, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.accordion-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.accordion-item:hover::before {
+    opacity: 1;
+}
+
+.accordion-item:hover {
+    border-color: rgba(201, 168, 85, 0.25);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.accordion-item.active {
+    background: rgba(201, 168, 85, 0.03);
+    border-color: rgba(201, 168, 85, 0.3);
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.2),
+        0 0 40px rgba(201, 168, 85, 0.1);
+}
+
+.accordion-item.active::before {
+    opacity: 1;
+}
+
+/* Accordion header */
+.accordion-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 25px 28px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.accordion-header:hover {
+    background: rgba(201, 168, 85, 0.02);
+}
+
+.accordion-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(201, 168, 85, 0.15) 0%, rgba(212, 175, 55, 0.1) 100%);
+    border: 1px solid rgba(201, 168, 85, 0.2);
+    border-radius: 12px;
+    color: var(--gold);
+    transition: all 0.4s ease;
+}
+
+.accordion-icon svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.4s ease;
+}
+
+.accordion-item.active .accordion-icon {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-color: transparent;
+    color: var(--bg-dark);
+    box-shadow: 0 0 20px rgba(201, 168, 85, 0.4);
+}
+
+.accordion-item.active .accordion-icon svg {
+    transform: rotate(180deg);
+}
+
+.accordion-title {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+}
+
+/* Accordion body */
+.accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.accordion-item.active .accordion-body {
+    max-height: 400px;
+    padding: 0 28px 28px 86px;
+}
+
+.accordion-body p {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .faq-section {
+        padding: 80px 0;
+    }
+
+    .faq-section .heading-text {
+        font-size: 2rem;
+    }
+
+    .tabs-list {
+        gap: 10px;
+    }
+
+    .tab-btn {
+        padding: 14px 24px;
+        font-size: 0.85rem;
+    }
+
+    .accordion-header {
+        padding: 20px 22px;
+    }
+
+    .accordion-icon {
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+    }
+
+    .accordion-title {
+        font-size: 1rem;
+    }
+
+    .accordion-item.active .accordion-body {
+        padding: 0 22px 22px 75px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tab-btn {
+        padding: 12px 18px;
+        font-size: 0.8rem;
+    }
+
+    .accordion-item.active .accordion-body {
+        padding: 0 18px 20px 18px;
+    }
+}

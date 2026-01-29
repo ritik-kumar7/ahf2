@@ -1,0 +1,192 @@
+/* ============================================
+   🏆 CONTACT - LUXURY BLACK & GOLD THEME
+   ============================================ */
+
+.contact-section {
+    padding: 120px 0;
+    min-height: 80vh;
+}
+
+.contact-section .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.contact-section .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.contact-section .heading-text {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 300;
+    letter-spacing: -0.015em;
+    background: linear-gradient(180deg,
+            #f5e6b8 0%,
+            #e0c87a 25%,
+            #c9a855 50%,
+            #b08d3a 75%,
+            #967428 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    display: inline-block;
+}
+
+.contact-section .heading-text::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), transparent);
+    border-radius: 2px;
+    box-shadow: 0 0 15px var(--gold);
+}
+
+.section-description {
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    margin: 30px auto 0;
+}
+
+.contact-content {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.contact-card {
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(201, 168, 85, 0.1);
+    border-radius: 24px;
+    padding: 40px 60px;
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+.contact-card:hover {
+    border-color: rgba(201, 168, 85, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 30px rgba(201, 168, 85, 0.1);
+    transform: translateY(-5px);
+}
+
+.contact-card h3 {
+    font-family: var(--font-serif);
+    color: var(--gold);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    transition: all 0.3s;
+}
+
+.contact-link.whatsapp {
+    color: var(--gold);
+}
+
+.contact-link.whatsapp svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--gold);
+}
+
+.contact-link:hover {
+    background: rgba(201, 168, 85, 0.1);
+    transform: scale(1.05);
+}
+
+.social-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.social-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 25px;
+    width: 150px;
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px solid rgba(201, 168, 85, 0.1);
+    border-radius: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-card:hover {
+    background: rgba(201, 168, 85, 0.05);
+    border-color: var(--gold);
+    transform: translateY(-5px);
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(201, 168, 85, 0.1), rgba(20, 20, 20, 0.8));
+    border: 1px solid rgba(201, 168, 85, 0.2);
+    color: var(--gold);
+    transition: all 0.3s;
+}
+
+.social-card:hover .social-icon {
+    background: var(--gold);
+    color: var(--bg-dark);
+    box-shadow: 0 0 15px var(--gold);
+}
+
+.social-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.social-name {
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.social-card:hover .social-name {
+    color: var(--text-primary);
+}
+
+@media (max-width: 600px) {
+    .contact-card {
+        padding: 30px;
+        width: 100%;
+    }
+
+    .social-grid {
+        gap: 15px;
+    }
+
+    .social-card {
+        width: 45%;
+    }
+}

@@ -145,7 +145,6 @@ const SectionTracker = () => {
                     onClick={() => scrollToSection(id)}
                 >
                     <div className="tracker-dot"></div>
-                    <div className="tracker-label">{label}</div>
                 </div>
             ))}
         </div>

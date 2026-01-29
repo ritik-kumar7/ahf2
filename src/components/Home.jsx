@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
-import Navbar from './Navbar';
 import Hero from './Hero';
 import TaglineStrip from './TaglineStrip';
 import Strategy from './Strategy';
 import Performance from './Performance';
 import RiskGovernance from './RiskGovernance';
-import Footer from './Footer';
-import BackgroundParticles from './BackgroundParticles';
 import SectionTracker from './SectionTracker';
+import FAQ from './FAQ/FAQ';
 
 const Home = () => {
     useEffect(() => {
@@ -129,17 +127,15 @@ const Home = () => {
 
     return (
         <>
-            <BackgroundParticles />
             <SectionTracker />
-            <Navbar />
             <main>
                 <Hero />
                 <TaglineStrip />
                 <Strategy />
                 <Performance />
                 <RiskGovernance />
+                <FAQ />
             </main>
-            <Footer />
         </>
     );
 };

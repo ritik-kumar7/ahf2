@@ -863,6 +863,26 @@ nav a::after {
     box-shadow: 0 0 4px var(--glow-gold);
 }
 
+/* Active link state */
+nav a.active-link {
+    color: var(--gold);
+    text-shadow: 0 0 10px rgba(201, 168, 85, 0.4);
+    position: relative;
+    font-weight: 600;
+}
+
+nav a.active-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 10px;
+    right: 10px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    box-shadow: 0 0 10px var(--gold);
+    animation: lineValid 0.5s ease-out forwards;
+}
+
 nav a:hover {
     color: var(--gold);
 }
@@ -2197,5 +2217,100 @@ section:first-of-type::before {
 
     .performance-chart-card {
         padding: 15px 15px 15px 15px;
+    }
+}
+
+/* ============================================
+           MOBILE BOTTOM NAVIGATION
+        ============================================ */
+.mobile-bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 90%;
+    max-width: 400px;
+    background: rgba(15, 15, 15, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(201, 168, 85, 0.3);
+    border-radius: 20px;
+    padding: 10px 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(201, 168, 85, 0.1);
+}
+
+.mobile-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 10px;
+    gap: 4px;
+    transition: all 0.3s ease;
+    padding: 5px;
+    border-radius: 12px;
+}
+
+.mobile-nav-item .icon {
+    font-size: 20px;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-nav-item.active {
+    color: var(--gold);
+}
+
+.mobile-nav-item.active .icon {
+    color: var(--gold);
+    transform: translateY(-2px);
+    filter: drop-shadow(0 0 8px rgba(201, 168, 85, 0.6));
+}
+
+.mobile-nav-item:hover {
+    color: var(--gold);
+}
+
+.mobile-nav-item:hover .icon {
+    color: var(--gold);
+}
+
+/* Visibility Control */
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+@media (max-width: 768px) {
+
+    /* Mobile Bottom Nav visible only on mobile */
+    .mobile-bottom-nav {
+        display: block;
+    }
+
+    /* Ensure CTA button is visible as requested */
+    .nav-cta {
+        display: inline-flex;
+    }
+
+    /* Keep header content spaced out (Logo left, Button/Menu right) */
+    header {
+        justify-content: space-between;
+        padding: 15px 20px;
     }
 }

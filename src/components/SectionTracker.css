@@ -19,20 +19,22 @@
     left: 9px;
     top: 0;
     bottom: 0;
-    width: 1px;
+    width: 2px;
     background: linear-gradient(to bottom,
             transparent 0%,
-            rgba(201, 168, 85, 0.2) 10%,
-            rgba(201, 168, 85, 0.2) 90%,
+            var(--gold-bronze) 20%,
+            var(--gold) 50%,
+            var(--gold-bronze) 80%,
             transparent 100%);
+    opacity: 0.4;
     z-index: -1;
+    box-shadow: 0 0 10px rgba(201, 168, 85, 0.2);
 }
 
 /* The Moving Indicator Bead */
 .tracker-indicator {
     position: absolute;
     left: 5px;
-    /* Aligned with line center */
     width: 10px;
     height: 10px;
     background: var(--gold);
@@ -61,7 +63,7 @@
     /* click target */
 }
 
-/* The Dot - Hidden but keeps spacing/layout */
+/* The Dot - Enhanced for standalone look */
 .tracker-dot {
     width: 20px;
     height: 20px;
@@ -72,41 +74,29 @@
 
 .tracker-dot::before {
     content: '';
+    width: 4px;
+    height: 4px;
+    background-color: var(--gold-dark);
+    border-radius: 50%;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0.6;
+    z-index: 1;
+    box-shadow: 0 0 5px rgba(201, 168, 85, 0.2);
+}
+
+.tracker-item:hover .tracker-dot::before {
+    transform: scale(1.5);
+    background-color: var(--gold);
+    box-shadow: 0 0 10px var(--gold);
+    opacity: 1;
+}
+
+.tracker-item.active .tracker-dot::before {
+    background-color: var(--gold);
     width: 6px;
     height: 6px;
-    background-color: var(--text-muted);
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    opacity: 0.5;
-    z-index: 1;
-}
-
-/* Tooltip Labels */
-.tracker-label {
-    position: absolute;
-    left: 35px;
-    background: rgba(10, 10, 10, 0.8);
-    border: 1px solid var(--border-gold);
-    color: var(--gold);
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(-10px);
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-}
-
-.tracker-item:hover .tracker-label {
     opacity: 1;
-    visibility: visible;
-    transform: translateX(0);
+    box-shadow: 0 0 15px var(--gold), 0 0 5px var(--gold-specular);
 }
 
 /* Specific Vertical Adjustments for visual alignment */
