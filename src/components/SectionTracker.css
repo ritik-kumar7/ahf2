@@ -1,112 +1,203 @@
-/* Section Tracker Container */
+/* ============================================
+           PREMIUM VERTICAL TIMELINE SLIDER
+        ============================================ */
+
+
+
+/* Main Container */
 .section-tracker {
     position: fixed;
-    left: 20px;
+    left: 32px;
     top: 50%;
     transform: translateY(-50%);
     z-index: 100;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 80vh;
+    height: 75vh;
     padding: 0;
+    filter: drop-shadow(0 0 20px rgba(201, 168, 85, 0.1));
 }
 
-/* Vertical Line connecting dots */
+/* Thin Vertical Line - Precision Instrument Style */
 .section-tracker::before {
     content: '';
     position: absolute;
-    left: 9px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
+    left: 11px;
+    top: 8%;
+    bottom: 8%;
+    width: 1px;
     background: linear-gradient(to bottom,
-            transparent 0%,
-            var(--gold-bronze) 20%,
-            var(--gold) 50%,
-            var(--gold-bronze) 80%,
-            transparent 100%);
-    opacity: 0.4;
-    z-index: -1;
-    box-shadow: 0 0 10px rgba(201, 168, 85, 0.2);
+        transparent 0%,
+        rgba(201, 168, 85, 0.15) 5%,
+        rgba(201, 168, 85, 0.35) 25%,
+        rgba(220, 199, 137, 0.45) 50%,
+        rgba(201, 168, 85, 0.35) 75%,
+        rgba(201, 168, 85, 0.15) 95%,
+        transparent 100%);
+    box-shadow: 
+        0 0 8px rgba(201, 168, 85, 0.2),
+        0 0 16px rgba(201, 168, 85, 0.1);
+    z-index: 1;
 }
 
-/* The Moving Indicator Bead */
+/* Active Moving Indicator - Magnetic & Alive */
 .tracker-indicator {
     position: absolute;
-    left: 5px;
-    width: 10px;
-    height: 10px;
-    background: var(--gold);
+    left: 6px;
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
-    box-shadow: 0 0 15px var(--gold), 0 0 30px var(--gold-dark);
-    z-index: 2;
+    z-index: 10;
     pointer-events: none;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    will-change: top, box-shadow;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: top, transform, box-shadow;
+    
+    /* Inner Core - Bright Warm Gold */
+    background: radial-gradient(circle,
+        #f5e6b8 0%,
+        #e0c87a 30%,
+        #c9a855 70%,
+        #b08d3a 100%);
+    
+    /* Soft Radial Glow */
+    box-shadow: 
+        0 0 12px rgba(245, 230, 184, 0.8),
+        0 0 24px rgba(201, 168, 85, 0.6),
+        0 0 36px rgba(201, 168, 85, 0.3),
+        0 0 48px rgba(201, 168, 85, 0.15);
+    
+    /* Gentle Breathing Effect */
+    animation: breathe 3.5s ease-in-out infinite;
 }
 
-/* Glow Effect Increase (Pulse) when at a station */
+/* Precision Crosshair Lines */
+.tracker-indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    right: -20px;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(201, 168, 85, 0.3) 25%,
+        rgba(220, 199, 137, 0.6) 50%,
+        rgba(201, 168, 85, 0.3) 75%,
+        transparent 100%);
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+/* Enhanced Glow when Active */
 .tracker-indicator.active-glow {
-    box-shadow: 0 0 25px var(--gold), 0 0 50px var(--gold-specular), 0 0 80px var(--gold-bronze);
-    transform: scale(1.4);
-    background: var(--gold-specular);
+    transform: scale(1.15);
+    box-shadow: 
+        0 0 16px rgba(245, 230, 184, 1),
+        0 0 32px rgba(201, 168, 85, 0.8),
+        0 0 48px rgba(201, 168, 85, 0.5),
+        0 0 64px rgba(201, 168, 85, 0.25),
+        0 0 80px rgba(201, 168, 85, 0.1);
+    background: radial-gradient(circle,
+        #ffffff 0%,
+        #f5e6b8 20%,
+        #e0c87a 50%,
+        #c9a855 80%,
+        #b08d3a 100%);
 }
 
-/* Tracker Item */
+.tracker-indicator.active-glow::before {
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(220, 199, 137, 0.4);
+}
+
+/* Tracker Items - Invisible Click Targets */
 .tracker-item {
     position: relative;
     cursor: pointer;
     display: flex;
     align-items: center;
-    height: 20px;
-    /* click target */
+    justify-content: center;
+    height: 24px;
+    width: 24px;
+    z-index: 5;
 }
 
-/* The Dot - Enhanced for standalone look */
+/* Inactive Dots - Subtle & Dim */
 .tracker-dot {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .tracker-dot::before {
     content: '';
     width: 4px;
     height: 4px;
-    background-color: var(--gold-dark);
+    background: rgba(201, 168, 85, 0.25);
     border-radius: 50%;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    opacity: 0.6;
-    z-index: 1;
-    box-shadow: 0 0 5px rgba(201, 168, 85, 0.2);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0.4;
+    filter: blur(0.5px);
+    box-shadow: 
+        0 0 4px rgba(201, 168, 85, 0.15),
+        0 0 8px rgba(201, 168, 85, 0.08);
 }
 
+/* Hover State - Gentle Magnetism */
 .tracker-item:hover .tracker-dot::before {
-    transform: scale(1.5);
-    background-color: var(--gold);
-    box-shadow: 0 0 10px var(--gold);
-    opacity: 1;
+    transform: scale(1.3);
+    background: rgba(201, 168, 85, 0.5);
+    opacity: 0.7;
+    filter: blur(0px);
+    box-shadow: 
+        0 0 8px rgba(201, 168, 85, 0.3),
+        0 0 16px rgba(201, 168, 85, 0.15);
 }
 
+/* Active Dot State */
 .tracker-item.active .tracker-dot::before {
-    background-color: var(--gold);
     width: 6px;
     height: 6px;
-    opacity: 1;
-    box-shadow: 0 0 15px var(--gold), 0 0 5px var(--gold-specular);
+    background: rgba(220, 199, 137, 0.8);
+    opacity: 0.9;
+    filter: blur(0px);
+    box-shadow: 
+        0 0 10px rgba(220, 199, 137, 0.4),
+        0 0 20px rgba(201, 168, 85, 0.2);
+    animation: pulseGlow 2.5s ease-in-out infinite;
 }
 
-/* Specific Vertical Adjustments for visual alignment */
-/* Child 1 is indicator, 2 is Home, 3 is Strategy, 4 is Performance, 5 is Risk */
-.section-tracker>.tracker-item:nth-child(4) {
-    transform: translateY(-50px);
+/* Breathing Animation */
+@keyframes breathe {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.95;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
 }
 
-.section-tracker>.tracker-item:nth-child(5) {
-    transform: translateY(-50px);
+/* Gentle Pulse for Active Dots */
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 
+            0 0 10px rgba(220, 199, 137, 0.4),
+            0 0 20px rgba(201, 168, 85, 0.2);
+    }
+    50% {
+        box-shadow: 
+            0 0 15px rgba(220, 199, 137, 0.6),
+            0 0 30px rgba(201, 168, 85, 0.3),
+            0 0 45px rgba(201, 168, 85, 0.1);
+    }
 }
 
 /* Hide on mobile */

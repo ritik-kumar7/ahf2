@@ -39,34 +39,31 @@ const SectionTracker = () => {
             }
         });
 
-        // ========== ROBUST INDICATOR MOVEMENT ==========
+        // ========== PREMIUM INDICATOR MOVEMENT ==========
         const handleScroll = () => {
             if (!indicatorRef.current) return;
 
             const scrollY = window.scrollY;
             const viewportHeight = window.innerHeight;
 
-            // 1. Determine which "segment" of the page we are within
-            // We need the offsets of all sections to map scrollY to a segment index + progress
+            // Calculate section offsets
             const offsetMap = sections.map(s => {
                 const el = document.getElementById(s.id);
                 return el ? el.offsetTop : 0;
             });
 
-            // Add a virtual "end" point for the last section equal to document height
             offsetMap.push(document.documentElement.scrollHeight);
 
             let activeIndex = 0;
             let segmentProgress = 0;
 
-            // Find current segment in relation to viewport center
-            const triggerPoint = scrollY + (viewportHeight * 0.4); // 40% down the screen
+            // Smooth trigger point for premium feel
+            const triggerPoint = scrollY + (viewportHeight * 0.4);
 
             for (let i = 0; i < sections.length; i++) {
                 const start = offsetMap[i];
                 const end = offsetMap[i + 1];
 
-                // If trigger point is within this section's bounds
                 if (triggerPoint >= start && triggerPoint < end) {
                     activeIndex = i;
                     const segmentHeight = end - start;
@@ -74,19 +71,16 @@ const SectionTracker = () => {
                     segmentProgress = Math.min(Math.max(relativePos / segmentHeight, 0), 1);
                     break;
                 } else if (i === sections.length - 1 && triggerPoint >= start) {
-                    // Past the start of the last section
                     activeIndex = i;
                     segmentProgress = 1;
                 }
             }
 
-            // 2. Map to Tracker Dot Positions (Visual)
-            // We calculate the Y position relative to the tracker container
+            // Map to tracker positions with smooth interpolation
             const trackerItems = document.querySelectorAll('.tracker-item');
             const trackerContainer = document.querySelector('.section-tracker');
 
             if (!trackerItems.length || !trackerContainer) return;
-            // Only proceed if counts match (react render sync)
             if (trackerItems.length !== sections.length) return;
 
             const containerRect = trackerContainer.getBoundingClientRect();
@@ -96,42 +90,64 @@ const SectionTracker = () => {
                 if (index >= trackerItems.length) index = trackerItems.length - 1;
 
                 const itemRect = trackerItems[index].getBoundingClientRect();
-                // Return center of dot relative to container top
                 return (itemRect.top + itemRect.height / 2) - containerRect.top;
             };
 
             const startY = getDotCenterY(activeIndex);
-            const endY = getDotCenterY(activeIndex + 1); // getDotCenterY clamps internally if out of bounds
+            const endY = getDotCenterY(activeIndex + 1);
 
-            // Interpolate position
-            const currentY = startY + (endY - startY) * segmentProgress;
+            // Smooth cubic interpolation for premium movement
+            const easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+            const smoothProgress = easeInOutCubic(segmentProgress);
+            const currentY = startY + (endY - startY) * smoothProgress;
 
-            // Apply (minus half indicator height of 10px = 5px)
-            indicatorRef.current.style.top = `${currentY - 5}px`;
+            // Apply position with offset for indicator size
+            indicatorRef.current.style.top = `${currentY - 5.5}px`;
 
-
-            // Glow Logic (Near a dot)
-            const isNear = (segmentProgress < 0.1 || segmentProgress > 0.9);
-            if (isNear) {
+            // Enhanced glow logic - more sensitive for premium feel
+            const isNear = (segmentProgress < 0.15 || segmentProgress > 0.85);
+            const wasNear = indicatorRef.current.classList.contains('active-glow');
+            
+            if (isNear && !wasNear) {
                 indicatorRef.current.classList.add('active-glow');
-            } else {
+                // Add subtle haptic feedback simulation
+                if (navigator.vibrate) {
+                    navigator.vibrate(10);
+                }
+            } else if (!isNear && wasNear) {
                 indicatorRef.current.classList.remove('active-glow');
             }
         };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
+        // Throttled scroll for smooth performance
+        let ticking = false;
+        const throttledScroll = () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    handleScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', throttledScroll, { passive: true });
         handleScroll(); // Initial call
 
         return () => {
             observer.disconnect();
-            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('scroll', throttledScroll);
         };
     }, []);
 
     const scrollToSection = (id) => {
         const element = document.getElementById(id);
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+            // Smooth scroll with premium easing
+            element.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
         }
     };
 
@@ -143,6 +159,7 @@ const SectionTracker = () => {
                     key={id}
                     className={`tracker-item ${activeSection === id ? 'active' : ''}`}
                     onClick={() => scrollToSection(id)}
+                    title={label} // Tooltip for accessibility
                 >
                     <div className="tracker-dot"></div>
                 </div>
