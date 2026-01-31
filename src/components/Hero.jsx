@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from 'react';
+
+import WhitepaperPDF from '../assets/AHF2_WhitePaper_V1.pdf';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
@@ -17,6 +19,7 @@ const generateSmoothData = (points, startValue, endValue) => {
 };
 
 const Hero = () => {
+
     const chartRef = useRef(null);
 
     const snapshotData = generateSmoothData(50, 0, 100);
@@ -163,8 +166,8 @@ const Hero = () => {
                 </h1>
                 <p className="hero-subtitle">Discreet, systematic, risk‑first<br />approach to capital growth.</p>
                 <div className="hero-actions">
-                    <button className="btn btn-primary">Request Access</button>
-                    <button className="btn btn-outline">Download Factsheet</button>
+                    <a href="https://bscscan.com/token/0xf4b84ae679a8a69aa4d0395a029c0503cad6c2fb" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}>Request Access</a>
+                    <a href={WhitepaperPDF} download="AHF2_WhitePaper_V1.pdf" className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}>Download Factsheet</a>
                 </div>
             </div>
 
