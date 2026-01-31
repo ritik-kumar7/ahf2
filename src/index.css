@@ -989,7 +989,8 @@ nav a:hover::after {
     font-weight: 500;
     line-height: 1.4;
     letter-spacing: 0.05em;
-    text-transform: uppercase;
+    text-transform: none;
+    font-style: italic;
     color: var(--gold);
     display: block;
     margin-bottom: 32px;
