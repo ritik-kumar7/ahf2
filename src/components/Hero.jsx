@@ -156,7 +156,7 @@ const Hero = () => {
     return (
         <section className="hero" id="home">
             <div className="hero-content">
-                <div className="hero-top-tag">World&apos;s First Hedge Fund Backed Crypto Currency</div>
+                <div className="hero-top-tag">World&apos;s First Hedge Fund Backed <br /> Crypto Currency</div>
                 <h1>
                     <span className="gradient-text">Institutional AI‑Driven</span><br />
                     <span className="gradient-text">Trading Intelligence</span>
